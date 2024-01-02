@@ -18,7 +18,7 @@ if nums:
 if syms:
     all += symbols
 
-length = 5 # Adjust the number of characters in the password
+length = 4 # Adjust the number of characters in the password
 amount = 1  # Adjust the number of passwords to generate
 
 with open("generated_passwords.txt", "w") as file:

@@ -28,14 +28,15 @@ import sys, time, hashlib
 from array import *
 
 # Ask the user if they want the onscreen instructions
-yesno = input("Do you want the program to pause at each step so you have time to read the instructions? (type yes or no): ")
-if yesno == "no" or yesno == "n" or yesno == "NO" or yesno == "N":
-    show_instructions = False
-    print("Okay, then once you start the program it will run without pausing.")
-else:
-    show_instructions = True
-    print("Okay, the program will display more information as it runs and pause at each step.")
-    input("Press enter to continue.")
+#yesno = input("Do you want the program to pause at each step so you have time to read the instructions? (type yes or no): ")
+#if yesno == "no" or yesno == "n" or yesno == "NO" or yesno == "N":
+#    show_instructions = False
+show_instructions = False
+#    print("Okay, then once you start the program it will run without pausing.")
+#else:
+#    show_instructions = True
+#    print("Okay, the program will display more information as it runs and pause at each step.")
+#    input("Press enter to continue.")
     
 #--------------- global variables we expect will be used by any function -----------
 #
@@ -210,7 +211,7 @@ def search_method_2(num_pass_wheels):
     tests = 0
     still_searching = True
     print()
-    print("Using method 2 and searching with "+str(num_pass_wheels)+" characters.")
+    print("Using method 2 and searching with up-to "+str(num_pass_wheels)+" characters.")
     wheel = " ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
     # we only allow up to 8 wheels for each password for now
     if (num_pass_wheels > 8):
@@ -482,7 +483,8 @@ def main(argv=None):
         print("The example code will automatically guess passwords 1-5.")
         print("It will not guess password 6 unless you make some changes to the code.")
         print()
-    which_password = int(input("Which password do you want to try to guess (0-6)? "))
+    #which_password = int(input("Which password do you want to try to guess (0-6)? "))
+    which_password = 0
     
     if 6 == which_password and show_instructions:
         print()
@@ -508,58 +510,58 @@ def main(argv=None):
     foundit = False
     print("Trying to guess password "+str(which_password)+"...")
     # Look through our list of common passwords first
-    if not foundit:
-        foundit = search_method_3("passwords.txt")
+    #if not foundit:
+    #    foundit = search_method_3("passwords.txt")
     # Still looking? Let's combine the common passwords 2 at a time
-    if not foundit:
-        print("Method 3 did not work!")
-        if show_instructions:
-            input("Press enter to continue.")
-        foundit = search_method_4("passwords.txt")
+    #if not foundit:
+    #    print("Method 3 did not work!")
+    #    if show_instructions:
+    #        input("Press enter to continue.")
+    #    foundit = search_method_4("passwords.txt")
     # Still looking? See if it's a single digit
-    if not foundit:
-        print("Method 4 did not work!")
-        if show_instructions:
-            input("Press enter to continue.")
-        foundit = search_method_1(1)
+    #if not foundit:
+    #    print("Method 4 did not work!")
+    #    if show_instructions:
+    #        input("Press enter to continue.")
+    #    foundit = search_method_1(1)
     # Still looking? See if it's a 2 digit number
-    if not foundit:
-        print("Method 1 (1 digit) did not work!")
-        if show_instructions:
-            input("Press enter to continue.")
-        foundit = search_method_1(2)
+    #if not foundit:
+    #    print("Method 1 (1 digit) did not work!")
+    #    if show_instructions:
+    #        input("Press enter to continue.")
+    #    foundit = search_method_1(2)
     # Still looking? See if it's a 3 digit number
-    if not foundit:
-        print("Method 1 (2 digit) did not work!")
-        if show_instructions:
-            input("Press enter to continue.")
-        foundit = search_method_1(3)
+    #if not foundit:
+    #    print("Method 1 (2 digit) did not work!")
+    #    if show_instructions:
+    #        input("Press enter to continue.")
+    #    foundit = search_method_1(3)
     # Still looking? See if it's a 4 digit number
-    if not foundit:
-        print("Method 1 (3 digit) did not work!")
-        if show_instructions:
-            input("Press enter to continue.")
-        foundit = search_method_1(4)
+    #if not foundit:
+    #    print("Method 1 (3 digit) did not work!")
+    #    if show_instructions:
+    #        input("Press enter to continue.")
+    #    foundit = search_method_1(4)
     # Still looking? Use our rotary wheel simulation up to 6 wheels.
     # This should take care of any 5 digit number as well as letter
     # combinations up to 6 characters
     if not foundit:
-        print("Method 1 (4 digit) did not work!")
+    #    print("Method 1 (4 digit) did not work!")
         if show_instructions:
             input("Press enter to continue.")
-        foundit = search_method_2(6)
+        foundit = search_method_2(8)
     # Still looking? Try 7 digit numbers
-    if not foundit:
-        print("Method 2 (6 digits) did not work!")
-        if show_instructions:
-            input("Press enter to continue.")
-        foundit = search_method_1(7)
+    #if not foundit:
+    #    print("Method 2 (6 digits) did not work!")
+    #    if show_instructions:
+    #        input("Press enter to continue.")
+    #    foundit = search_method_1(7)
     # Still looking? Try 8 digit numbers
-    if not foundit:
-        print("Method 2 (7 digits) did not work!")
-        if show_instructions:
-            input("Press enter to continue.")
-        foundit = search_method_1(8)
+    #if not foundit:
+    #    print("Method 2 (7 digits) did not work!")
+    #    if show_instructions:
+    #        input("Press enter to continue.")
+    #    foundit = search_method_1(8)
     seconds = time.time()-overallstart
     # When testing this project, some users reported that the next lines of code reported
     # an error when Python tried to divide by zero. On those machines, the clock seems
